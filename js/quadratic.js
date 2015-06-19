@@ -12,6 +12,15 @@
         this.c = (typeof c === 'function') ? c(): c;
         this.relation = (typeof relation == 'function') ? relation(): relation;
     };
+    Equation.prototype.normalize = function(){
+        var d = this.a;
+        return new Equation(
+            this.a.dividedBy(d),
+            this.b.dividedBy(d),
+            this.c.dividedBy(d),
+            this.a.isNegative() ? this.relation.opposite: this.relation
+        );
+    }
 
     var CoefficientView = function(equation, coefficient, container){
         this.equation = equation;

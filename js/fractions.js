@@ -47,6 +47,9 @@
     Fraction.prototype.isZero = function(){
         return this.numerator === 0;
     }
+    Fraction.prototype.isNegative = function(){
+        return this.numerator < 0;
+    }
     Fraction.prototype.toString = function(){
         if (this.denominator === 1) {
             return this.numerator.toString();

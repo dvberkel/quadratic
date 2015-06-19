@@ -7,6 +7,9 @@
         value.inRange(-100, 100),
         value.random(quadratic.relation)
     );
+
     new quadratic.EquationView(equation, document.getElementById('equation'));
-    new quadratic.EquationView(equation.normalize(), document.getElementById('normalized-equation'));
+
+    var solution = quadratic.solve(equation);
+    new quadratic.SolutionView(solution, document.getElementById('solution'));
 })(quadratic);

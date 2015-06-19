@@ -1,4 +1,13 @@
 ;(function($, fractions, extension){
+    function zip(xs, ys){
+        var result = [];
+        for (var index = 0; index < xs.length; index++) {
+            if (index >= ys.length) { break; }
+            result.push([xs[index], ys[index]]);
+        }
+        return result;
+    }
+
     var Relation = function(symbol){
         this.symbol = symbol;
     };
@@ -39,11 +48,13 @@
             if (D.isZero()) {
                 result.solutions = [top];
             } else {
-                result.solitions = [
+                result.solutions = [
                     new extension.Quadratic(top, halve.times(minus1), D),
                     new extension.Quadratic(top, halve, D)
                 ];
             }
+        } else {
+            result.solutions = [];
         }
         return result;
     }
@@ -99,4 +110,40 @@
         more.setOpposite(less);
         return [less, equal, more];
     })();
+
+    var ZeroView = function(value, container){
+        this.value = value;
+        this.container = container;
+        this.update();
+    };
+    ZeroView.prototype.update = function(){
+        this.container.innerHTML = this.value.toString();
+    }
+
+    var SolutionView = $.SolutionView = function(solution, container) {
+        this.solution = solution;
+        this.container = container;
+        this.views = [];
+        this.initialize();
+        this.update();
+    };
+    SolutionView.prototype.initialize = function(){
+        this.views = ['top', 'D']
+            .map(function(name){
+                return {'name': name, 'container': this.container.querySelector('.coefficient.' + name) };
+            }.bind(this))
+            .map(function(data){
+                return new CoefficientView(this.solution, data.name, data.container);
+            }.bind(this));
+        this.views.push(new EquationView(this.solution.normalized, this.container.querySelector('.normalized.equation')));
+        zip(this.solution.solutions, this.container.querySelectorAll('.solution'))
+            .forEach(function(pair){
+                this.views.push(new ZeroView(pair[0], pair[1]));
+            }.bind(this));
+    };
+    SolutionView.prototype.update = function(){
+        this.views.forEach(function(view){
+            view.update();
+        });
+    };
 })(window.quadratic = window.quadratic || {}, fractions, extension);

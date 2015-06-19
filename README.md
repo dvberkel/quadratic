@@ -1,2 +1,4 @@
-# quadratic
-A webpage to help you solve quadratic equations
+Quadratic
+---------
+
+A webpage to help you solve quadratic equations.

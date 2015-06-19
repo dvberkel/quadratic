@@ -1,4 +1,4 @@
-;(function($){
+;(function($, fractions){
     var Relation = function(symbol){
         this.symbol = symbol;
     };
@@ -20,6 +20,28 @@
             this.c.dividedBy(d),
             this.a.isNegative() ? this.relation.opposite: this.relation
         );
+    };
+
+    quadratic.solve = function(equation){
+        var minus1 = new fractions.Fraction(-1, 1);
+        var two = new fractions.Fraction(2, 1);
+        var four = new fractions.Fraction(4, 1);
+        var normalized = equation.normalize();
+        var top = normalized.b.dividedBy(two).times(minus1);
+        var D = normalized.b.times(normalized.b).minus(four.times(normalized.c));
+        var result = {
+            'normalized' : normalized,
+            'top': top,
+            'D': D
+        };
+        if (!D.isNegative()) {
+            if (D.isZero()) {
+                result.solutions = [top];
+            } else {
+                result.solitions = [top.minus(D), top.plus(D)]; // Needs sqrt
+            }
+        }
+        return result;
     }
 
     var CoefficientView = function(equation, coefficient, container){
@@ -73,4 +95,4 @@
         more.setOpposite(less);
         return [less, equal, more];
     })();
-})(window.quadratic = window.quadratic || {});
+})(window.quadratic = window.quadratic || {}, fractions);

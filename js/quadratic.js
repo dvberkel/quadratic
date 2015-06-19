@@ -51,7 +51,7 @@
     EquationView.prototype.initialize = function(){
         this.views = ['a', 'b', 'c']
             .map(function(name){
-                return {'name': name, 'container': this.container.querySelector('#' + name) };
+                return {'name': name, 'container': this.container.querySelector('.coefficient.' + name) };
             }.bind(this))
             .map(function(data){
                 return new CoefficientView(this.equation, data.name, data.container);

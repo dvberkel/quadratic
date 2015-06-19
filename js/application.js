@@ -1,8 +1,10 @@
 ;(function(quadratic){
     var container = document.getElementById('equation');
 
-    var equation = new quadratic.Equation(function(){
-        return 1;
-    }, 5, 6);
+    var equation = new quadratic.Equation(
+        value.nonZero(value.inRange(-5, 5)),
+        value.inRange(-10, 10),
+        value.inRange(-100, 100)
+    );
     new quadratic.EquationView(equation, container);
 })(quadratic);

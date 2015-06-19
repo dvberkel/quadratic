@@ -1,4 +1,4 @@
-;(function($){
+;(function($, fractions){
     function first(n){
         var result = [];
         for (var index = 0; index < n; index++){
@@ -29,7 +29,7 @@
 
     $.inRange = function(low, high){
         var candidates = first(high - low + 1)
-            .map(function(element){ return low + element;});
+            .map(function(element){ return new fractions.Fraction(low + element, 1); });
         return function(){
             return random(candidates);
         }
@@ -38,7 +38,7 @@
     $.nonZero = function(generator) {
         return function(){
             var result = generator();
-            while (result === 0) {
+            while (result.isZero()) {
                 result = generator();
             }
             return result;
@@ -50,4 +50,4 @@
             return random(elements);
         }
     }
-})(window.value = window.value || {});
+})(window.value = window.value || {}, fractions);

@@ -1,4 +1,4 @@
-;(function($, fractions){
+;(function($, fractions, extension){
     var Relation = function(symbol){
         this.symbol = symbol;
     };
@@ -24,6 +24,7 @@
 
     quadratic.solve = function(equation){
         var minus1 = new fractions.Fraction(-1, 1);
+        var halve = new fractions.Fraction(1, 2);
         var two = new fractions.Fraction(2, 1);
         var four = new fractions.Fraction(4, 1);
         var normalized = equation.normalize();
@@ -38,7 +39,10 @@
             if (D.isZero()) {
                 result.solutions = [top];
             } else {
-                result.solitions = [top.minus(D), top.plus(D)]; // Needs sqrt
+                result.solitions = [
+                    new extension.Quadratic(top, halve.times(minus1), D),
+                    new extension.Quadratic(top, halve, D)
+                ];
             }
         }
         return result;
@@ -95,4 +99,4 @@
         more.setOpposite(less);
         return [less, equal, more];
     })();
-})(window.quadratic = window.quadratic || {}, fractions);
+})(window.quadratic = window.quadratic || {}, fractions, extension);

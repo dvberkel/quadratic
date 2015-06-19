@@ -1,8 +1,8 @@
 ;(function($){
     var Equation = quadratic.Equation = function(a, b, c){
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        this.a = (typeof a === 'function') ? a(): a;
+        this.b = (typeof b === 'function') ? b(): b;
+        this.c = (typeof c === 'function') ? c(): c;
     };
 
     var CoefficientView = function(equation, coefficient, container){

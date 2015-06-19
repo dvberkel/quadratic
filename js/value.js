@@ -44,4 +44,10 @@
             return result;
         }
     }
+
+    $.random = function(elements){
+        return function(){
+            return random(elements);
+        }
+    }
 })(window.value = window.value || {});

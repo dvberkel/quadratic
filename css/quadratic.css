@@ -1,0 +1,23 @@
+h1, #equation {
+  text-align: center;
+}
+
+h1 {
+  font-size: 200%;
+}
+
+#equation {
+  font-size: 300%;
+}
+
+.solution-steps {
+  width: 480px;
+  margin-left: 50%;
+  margin-right: auto;
+  transform: translateX(-50%);
+  font-size: 150%;
+}
+
+.solution + .solution {
+  margin-left: 2em;
+}

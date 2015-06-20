@@ -21,6 +21,8 @@
 
 .solution-steps.show {
   top: 20%;
+  animation-name: show;
+  animation-duration: 1s;
 }
 
 .solution + .solution {
@@ -43,4 +45,14 @@
   border-color: black;
   border-width: 1px;
   border-radius: 6em;
+}
+
+@keyframes show {
+  from {
+    top: 100%;
+  }
+
+  to {
+    top: 20%;
+  }
 }

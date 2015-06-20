@@ -11,5 +11,5 @@
     new quadratic.EquationView(equation, document.getElementById('equation'));
 
     var solution = quadratic.solve(equation);
-    new quadratic.SolutionView(solution, document.getElementById('solution'));
+    new quadratic.SolutionView(solution, document.getElementById('solution-steps'));
 })(quadratic);

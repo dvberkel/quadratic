@@ -1,4 +1,4 @@
-h1, #equation {
+h1, #equation, .solve {
   text-align: center;
 }
 
@@ -20,4 +20,22 @@ h1 {
 
 .solution + .solution {
   margin-left: 2em;
+}
+
+.solve {
+  position: absolute;
+  display: block;
+  width: 4em;
+  height: 4em;
+  bottom: -2em;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 200%;
+  line-height: 3em;
+  color: white;
+  background-color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 6em;
 }

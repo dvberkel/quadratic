@@ -44,6 +44,9 @@
     Fraction.prototype.inverse = function(){
         return new Fraction(this.denominator, this.numerator);
     };
+    Fraction.prototype.sqrt = function(){
+        return new Fraction(Math.sqrt(this.numerator), Math.sqrt(this.denominator));
+    };
     Fraction.prototype.isZero = function(){
         return this.numerator === 0;
     }

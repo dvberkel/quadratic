@@ -16,6 +16,7 @@
 
     function showSolutionSteps(){
         solutionSteps.classList.add('show');
+        solve.classList.add('hide');
     }
 
     var solve = document.getElementById('solve');

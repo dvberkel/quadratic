@@ -47,6 +47,12 @@
   border-radius: 6em;
 }
 
+.solve.hide {
+  bottom: -5em;
+  animation-name: hide;
+  animation-duration: 1s;
+}
+
 @keyframes show {
   from {
     top: 100%;
@@ -54,5 +60,15 @@
 
   to {
     top: 20%;
+  }
+}
+
+@keyframes hide {
+  from {
+    bottom: -2em;
+  }
+
+  to {
+    bottom: -5em;
   }
 }

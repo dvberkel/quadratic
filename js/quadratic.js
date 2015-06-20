@@ -1,4 +1,4 @@
-;(function($, fractions, extension){
+;(function($, fractions, extension, domain){
     function zip(xs, ys){
         var result = [];
         for (var index = 0; index < xs.length; index++) {
@@ -120,6 +120,18 @@
         this.container.innerHTML = this.value.toString();
     }
 
+    var DomainView = function(solution, container){
+        this.solution = solution;
+        this.container = container;
+        this.update();
+    };
+    DomainView.prototype.update = function(){
+        this.container.innerHTML = domain.response(
+            this.solution.normalized.relation,
+            this.solution.solutions
+        );
+    };
+
     var SolutionView = $.SolutionView = function(solution, container) {
         this.solution = solution;
         this.container = container;
@@ -140,10 +152,11 @@
             .forEach(function(pair){
                 this.views.push(new ZeroView(pair[0], pair[1]));
             }.bind(this));
+        this.views.push(new DomainView(this.solution, this.container.querySelector('.domain')));
     };
     SolutionView.prototype.update = function(){
         this.views.forEach(function(view){
             view.update();
         });
     };
-})(window.quadratic = window.quadratic || {}, fractions, extension);
+})(window.quadratic = window.quadratic || {}, fractions, extension, domain);

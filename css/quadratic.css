@@ -1,9 +1,5 @@
-h1, #equation, .solve {
+#equation, .solve {
   text-align: center;
-}
-
-h1 {
-  font-size: 200%;
 }
 
 #equation {

@@ -7,15 +7,24 @@ h1 {
 }
 
 #equation {
+  position: absolute;
+  bottom: 85%;
+  width: 100%;
   font-size: 300%;
 }
 
 .solution-steps {
+  position: absolute;
+  top: 100%;
   width: 480px;
   margin-left: 50%;
   margin-right: auto;
   transform: translateX(-50%);
   font-size: 150%;
+}
+
+.solution-steps.show {
+  top: 20%;
 }
 
 .solution + .solution {
